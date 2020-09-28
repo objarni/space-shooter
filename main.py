@@ -11,11 +11,6 @@ from constants import WIDTH, HEIGHT, FPS, POWERUP_TIME, BAR_LENGTH, BAR_HEIGHT, 
 img_dir = path.join(path.dirname(__file__), 'assets')
 sound_folder = path.join(path.dirname(__file__), 'sounds')
 
-###############################
-## to be placed in "constant.py" later
-
-# Define Colors
-###############################
 
 ###############################
 ## to placed in "__init__.py" later
@@ -106,7 +101,6 @@ def newmob():
 
 class Explosion(pygame.sprite.Sprite):
     def __init__(self, center, size):
-        print("Explosion")
         pygame.sprite.Sprite.__init__(self)
         self.size = size
         self.image = explosion_anim[self.size][0]
@@ -132,7 +126,6 @@ class Explosion(pygame.sprite.Sprite):
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
-        print("Player")
         pygame.sprite.Sprite.__init__(self)
         ## scale the player img down
         self.image = pygame.transform.scale(player_img, (50, 38))
@@ -233,7 +226,6 @@ class Player(pygame.sprite.Sprite):
 # defines the enemies
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
-        print("Mob")
         pygame.sprite.Sprite.__init__(self)
         self.image_orig = random.choice(meteor_images)
         self.image_orig.set_colorkey(BLACK)
@@ -282,7 +274,6 @@ class Mob(pygame.sprite.Sprite):
 
 class Pow(pygame.sprite.Sprite):
     def __init__(self, center):
-        print("Pow")
         pygame.sprite.Sprite.__init__(self)
         self.type = random.choice(['shield', 'gun'])
         self.image = powerup_images[self.type]
@@ -303,7 +294,6 @@ class Pow(pygame.sprite.Sprite):
 ## defines the sprite for bullets
 class Bullet(pygame.sprite.Sprite):
     def __init__(self, x, y):
-        print("Bullet")
         pygame.sprite.Sprite.__init__(self)
         self.image = bullet_img
         self.image.set_colorkey(BLACK)
@@ -311,7 +301,7 @@ class Bullet(pygame.sprite.Sprite):
         ## place the bullet according to the current position of the player
         self.rect.bottom = y
         self.rect.centerx = x
-        self.speedy = -20
+        self.speedy = -10
 
     def update(self):
         """should spawn right in front of the player"""
@@ -329,14 +319,13 @@ class Bullet(pygame.sprite.Sprite):
 
 class Missile(pygame.sprite.Sprite):
     def __init__(self, x, y):
-        print("Missile")
         pygame.sprite.Sprite.__init__(self)
         self.image = missile_img
         self.image.set_colorkey(BLACK)
         self.rect = self.image.get_rect()
         self.rect.bottom = y
         self.rect.centerx = x
-        self.speedy = -20
+        self.speedy = -10
 
     def update(self):
         """should spawn right in front of the player"""
